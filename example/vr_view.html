@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Memory Garden VR (Cardboard)</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background: black;
+    overflow: hidden;
+}
+
+header {
+    background: #2f6f3e;
+    color: white;
+    padding: 12px;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    background: #f2f5f2;
+}
+
+.panel {
+    width: 28%;
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.list {
+    width: 72%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 10px;
+}
+
+.card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.card img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+}
+
+.vr {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: black;
+    overflow: hidden;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.vr.active {
+    display: flex;
+}
+
+.eye {
+    width: 50vw;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+
+    transform-origin: center;
+    filter: contrast(1.15) saturate(1.2);
+    clip-path: ellipse(98% 100% at 50% 50%);
+}
+
+/* LEFT / RIGHT separation tuning */
+#left {
+    transform: perspective(1000px) rotateY(2.5deg) translateX(-4px);
+}
+
+#right {
+    transform: perspective(1000px) rotateY(-2.5deg) translateX(4px);
+}
+
+.vr::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+
+    background: radial-gradient(circle at center,
+        rgba(0,0,0,0) 45%,
+        rgba(0,0,0,0.85) 100%);
+}
+
+/* ===== VR EXIT BUTTON ===== */
+.vrbar {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 10;
+}
+
+.vrbar button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<header id="ui">Memory Garden VR (Cardboard Mode)</header>
+
+<div class="container" id="mainUI">
+
+<div class="panel">
+    <input id="title" placeholder="title"><br><br>
+    <textarea id="desc" placeholder="memory"></textarea><br><br>
+    <input type="file" id="img"><br>
+    <button onclick="add()">SAVE</button>
+    <button onclick="enterVRTest()">ENTER VR TEST</button>
+</div>
+
+<div class="list" id="list"></div>
+
+</div>
+
+<!-- VR -->
+<div class="vr" id="vr">
+    <div class="vrbar">
+        <button onclick="exitVR()">EXIT</button>
+    </div>
+    <div class="eye" id="left"></div>
+    <div class="eye" id="right"></div>
+</div>
+
+<script>
+let memories = [];
+let current = null;
+
+function add() {
+    const file = img.files[0];
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+        memories.unshift({
+            title: title.value,
+            desc: desc.value,
+            img: e.target.result
+        });
+
+        render();
+        clear();
+    };
+
+    if (file) reader.readAsDataURL(file);
+}
+
+function render() {
+    list.innerHTML = "";
+
+    memories.forEach(m => {
+        const div = document.createElement("div");
+        div.className = "card";
+
+        div.onclick = () => openVR(m);
+
+        div.innerHTML = `
+            <img src="${m.img}">
+            <div style="padding:8px">
+                <b>${m.title}</b>
+                <p>${m.desc}</p>
+            </div>
+        `;
+
+        list.appendChild(div);
+    });
+}
+
+/* ===== VR OPEN (Cardboard tuned) ===== */
+function openVR(m) {
+    current = m;
+
+    mainUI.style.display = "none";
+    vr.classList.add("active");
+    ui.style.display = "none";
+
+    // LEFT eye
+    left.style.backgroundImage = `url(${m.img})`;
+    left.style.transform =
+        "perspective(1000px) rotateY(2.8deg) translateX(-5px)";
+
+    // RIGHT eye
+    right.style.backgroundImage = `url(${m.img})`;
+    right.style.transform =
+        "perspective(1000px) rotateY(-2.8deg) translateX(5px)";
+}
+
+/* ===== EXIT VR ===== */
+function exitVR() {
+    vr.classList.remove("active");
+    mainUI.style.display = "flex";
+    ui.style.display = "block";
+}
+
+/* ===== TEST MODE ===== */
+function enterVRTest() {
+    if (memories.length === 0) {
+        alert("No memories yet");
+        return;
+    }
+    openVR(memories[0]);
+}
+
+function clear() {
+    title.value = "";
+    desc.value = "";
+    img.value = "";
+}
+</script>
+
+</body>
+</html>
