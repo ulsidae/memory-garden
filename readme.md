@@ -60,13 +60,6 @@ Memory Garden explores a more interactive approach to memory storage through gui
 - Shared memory pages per user/group
 - Family members can view and add context
 
-### 🌊 Region-Based Theme (Busan)
-- Optional visual themes inspired by:
-  - Haeundae Beach
-  - Gwangalli Bridge
-  - Busan Port
-- Used as background context for memory entries
-
 ---
 
 ## 🧠 AI Interaction Design (Planned)
