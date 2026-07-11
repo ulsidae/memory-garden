@@ -2,19 +2,47 @@
 
 **AI-powered web application for memory journaling and family-based reminiscence**
 
+> **🚧 Active Development**
+>
+> Memory Garden is currently under active development.
+> This repository reflects the latest project direction and will continue to evolve as new features and research are incorporated.
+
+## 🗺️ Roadmap
+
+- [x] Initial Unity VR prototype
+- [x] Project direction redesign (PWA-first)
+- [ ] Memory journaling interface
+- [ ] AI-guided memory conversations
+- [ ] Family sharing
+- [x] Smartphone VR viewer prototype
+- [ ] Backend & cloud storage
+
 ---
 
 ## 📌 Project Overview
 
-Memory Garden is a **web-based memory journaling application (MVP)** that allows users to store, revisit, and organize personal memories using photos, videos, and text.
+Memory Garden is a **web-based memory journaling application** that allows users to store, revisit, and organize personal memories using photos, videos, and text.
 
 Users can upload media files and attach contextual descriptions such as time, place, and personal stories.  
 An AI-assisted guide (planned) helps users structure these memories into more organized and readable entries.
 
-This project is developed as a **startup idea competition prototype**, focused on:
+This project was developed as a prototype for a startup idea competition, focused on:
 - AI-assisted journaling
 - Digital healthcare exploration
 - Family-based memory sharing
+
+---
+
+## 🌱 Project History
+
+Memory Garden was initially explored as a Unity-based VR prototype developed by **hhandc**.
+
+To improve accessibility and real-world usability, the project later evolved into a PWA-first platform with optional smartphone-based VR support.
+
+The current repository reflects this new direction while preserving the original vision of AI-assisted memory recall and family reminiscence.
+
+**Original Unity Prototype:**  
+[Memory Garden (Unity Prototype) by hhandc](https://github.com/hhandc/MemoryGarden)
 
 ---
 
@@ -37,7 +65,7 @@ Memory Garden explores a more interactive approach to memory storage through gui
 
 ---
 
-## 💡 Key Features (MVP)
+## 💡 Key Features 
 
 ### 📷 Memory Upload
 - Upload images and videos via web interface
@@ -84,16 +112,15 @@ Core behavior:
 
 ---
 
-## 🏗️ Tech Stack (MVP)
+## 🏗️ Tech Stack 
 
 ### Frontend
 - HTML
 - CSS
 - Vanilla JavaScript
 
-### Backend (Not implemented yet)
-- None (client-side only MVP)
-- Future: Node.js or serverless backend
+### Backend (Planned)
+- Node.js or serverless backend
 
 ### Storage (Planned)
 - Cloud storage for images/videos
@@ -107,10 +134,12 @@ Core behavior:
 
 ## 🚧 Current Status
 
-- Stage: Early MVP / Prototype
+- Stage: Active Development
 - Implementation: Frontend-only (HTML/CSS/JS)
 - Backend: Not implemented
 - AI: Design phase only
+
+This repository currently focuses on validating the core concept and user experience before implementing the full backend and AI features.
 
 ---
 
