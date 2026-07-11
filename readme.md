@@ -39,10 +39,10 @@ Memory Garden was initially explored as a Unity-based VR prototype developed by 
 
 To improve accessibility and real-world usability, the project later evolved into a PWA-first platform with optional smartphone-based VR support.
 
-The current repository reflects this new direction while preserving the original vision of AI-assisted memory recall and family reminiscence.
-
 **Original Unity Prototype:**  
 [Memory Garden (Unity Prototype) by hhandc](https://github.com/hhandc/MemoryGarden)
+
+The current repository continues the project with a redesigned PWA-first architecture, preserving the original vision of AI-assisted memory recall and family reminiscence, while the original Unity prototype remains available in its own repository.
 
 ---
 
