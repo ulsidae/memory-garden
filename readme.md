@@ -162,6 +162,7 @@ Potential outcomes:
 
 ---
 
+
 ## 🧭 Vision
 
 Memory Garden focuses on **structured memory capture and recall**, rather than simple media storage.
